@@ -26,7 +26,6 @@ router.get('/me', auth, async (req, res) => {
     }
 });
 
-
 // @route   POST api/profile
 // @desc    Create or Update a user profile
 // @access  Private
@@ -101,7 +100,6 @@ router.post('/', [auth, [
         res.status(500).send('Server Error')
     }
 
-
 });
 
 // @route   GET api/profile
@@ -117,7 +115,6 @@ router.get('/', async (req, res) => {
         res.status(500).send('Server Error')
     }
 })
-
 
 // @route   GET api/profile/user/:user_id
 // @desc    Get profile by user ID
@@ -156,8 +153,8 @@ router.delete('/', auth, async (req, res) => {
         if (err.kind == 'ObjectId') return res.status(400).json({ msg: 'Profile not found' })
         res.status(500).send('Server Error')
     }
-})
 
+})
 
 // @route   PUT api/profile/experience
 // @desc    Add profile experience
@@ -211,10 +208,7 @@ router.put('/experience', [auth, [
         res.status(500).send('Server Error')
     }
 
-
-
 })
-
 
 // @route   DELETE api/profile/experience/:exp_id
 // @desc    Delete an experience from profile
@@ -232,10 +226,7 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
         console.error(err.message)
         res.status(500).send('Server Error')
     }
-
 })
-
-
 
 // @route   PUT api/profile/education
 // @desc    Add profile education
@@ -291,11 +282,7 @@ router.put('/education', [auth, [
         console.error(err.message)
         res.status(500).send('Server Error')
     }
-
-
-
 })
-
 
 // @route   DELETE api/profile/education/:edu_id
 // @desc    Delete an education from profile
@@ -342,6 +329,5 @@ router.get('/github/:username', (req, res) => {
         res.status(500).send('Server Error')
     }
 })
-
 
 module.exports = router;
