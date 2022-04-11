@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken')
 const config = require('config')
 const bcrypt = require('bcryptjs');
 
-
 // @route   GET api/auth
 // @desc    Test route
 // @access  Public
@@ -20,7 +19,6 @@ router.get('/', auth, async (req, res) => {
         res.status(500).send('Server Error')
     }
 });
-
 
 // @route   POST api/auth
 // @desc    Authenticate user & get token
@@ -71,7 +69,6 @@ router.post('/', [
                 res.json({ token })
             }
         )
-
     } catch (err) {
         console.error(err.message)
         res.status(500).send('Server error')
