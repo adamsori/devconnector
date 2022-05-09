@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
 //import axios from 'axios' | Para testar a requisicao para API comentada abaixo
 
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
 
     const [formData, setFormData] = useState({
         name: '',
@@ -49,6 +49,10 @@ const Register = ({ setAlert, register }) => {
             // }
 
         }
+    }
+
+    if (isAuthenticated) {
+        return <Navigate to="/dashboard" />
     }
 
     return (
@@ -115,9 +119,14 @@ const Register = ({ setAlert, register }) => {
 
 Register.propTypes = {
     setAlert: PropTypes.func.isRequired,
-    register: PropTypes.func.isRequired
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
 }
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
 export default connect(
-    null,
+    mapStateToProps,
     { setAlert, register }
 )(Register)
